@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
@@ -50,7 +51,11 @@ public class WowheadTest {
 	@After
 	public void fin() {
 		driver.close();	
-		driver.quit();
+		try {
+			driver.quit();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
