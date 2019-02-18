@@ -9,7 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 public class WowheadTest {
@@ -18,6 +21,7 @@ public class WowheadTest {
 	private String browser = System.getProperty("browser");
 	private String chrome = "chrome";
 	private String opera = "opera";
+	private String firefox = "firefox";
 	
 	
 	@Before
@@ -28,7 +32,14 @@ public class WowheadTest {
 			driver = new ChromeDriver();
 		}else if (browser.equals(opera)){
 			System.setProperty("webdriver.opera.driver", "C:\\Users\\formation\\Desktop\\SUT\\operadriver_win64\\operadriver.exe");
-			driver = new OperaDriver();
+			DesiredCapabilities cap = new DesiredCapabilities();
+			OperaOptions operaOptions = new OperaOptions();
+			operaOptions.setBinary("C:\\Users\\formation\\AppData\\Local\\Programs\\Opera\\launcher.exe");
+			cap.setCapability(OperaOptions.CAPABILITY, operaOptions);
+			driver = new OperaDriver();	
+		}else if (browser.equals(firefox)) {
+			System.setProperty("webdriver.gecko.driver", "C:\\Users\\formation\\Desktop\\SUT\\geckodriver.exe");
+			driver = new FirefoxDriver();
 		}
 		
 		driver.manage().window().maximize();
