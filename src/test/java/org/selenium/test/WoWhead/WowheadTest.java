@@ -15,7 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class WowheadTest {
 	
 	private WebDriver driver;
-	private String browser = System.getProperty("selenium.browser");
+	private String browser = System.getProperty("browser");
 	private String chrome = "chrome";
 	private String firefox = "firefox";
 	
@@ -27,7 +27,7 @@ public class WowheadTest {
 			System.setProperty("webdriver.chrome.driver", "C:\\Users\\formation\\Desktop\\SUT\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}else if (browser.equals(firefox)){
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\formation\\Desktop\\SUT\\geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "C:\\Users\\formation\\Desktop\\SUT\\geckodriver_new\\geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 		
@@ -72,11 +72,20 @@ public class WowheadTest {
 		LardeurPage lardeurPage = new LardeurPage(driver);
 		
 		// vérifier les 5 objets rares
-		assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectOne.getCssValue("color"));
-		assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectTwo.getCssValue("color"));
-		assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectThree.getCssValue("color"));
-		assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectFour.getCssValue("color"));
-		assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectFive.getCssValue("color"));
+		if (browser.equals(chrome)) {
+			assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectOne.getCssValue("color"));
+			assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectTwo.getCssValue("color"));
+			assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectThree.getCssValue("color"));
+			assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectFour.getCssValue("color"));
+			assertEquals("rgba(0, 112, 221, 1)", lardeurPage.objectFive.getCssValue("color"));
+		} else {
+			assertEquals("rgb(0, 112, 221)", lardeurPage.objectOne.getCssValue("color"));
+			assertEquals("rgb(0, 112, 221)", lardeurPage.objectTwo.getCssValue("color"));
+			assertEquals("rgb(0, 112, 221)", lardeurPage.objectThree.getCssValue("color"));
+			assertEquals("rgb(0, 112, 221)", lardeurPage.objectFour.getCssValue("color"));
+			assertEquals("rgb(0, 112, 221)", lardeurPage.objectFive.getCssValue("color"));
+		}
+		
 
 		/////////////////////////////////////////////
 		
