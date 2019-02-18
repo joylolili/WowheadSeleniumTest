@@ -9,16 +9,28 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class WowheadTest {
 	
 	private WebDriver driver;
+	private String browser = System.getProperty("selenium.browser");
+	private String chrome = "chrome";
+	private String firefox = "firefox";
+	
 	
 	@Before
 	public void init() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\formation\\Desktop\\SUT\\chromedriver.exe");
-		driver = new ChromeDriver();
+		
+		if (browser.equals(chrome)) {
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\formation\\Desktop\\SUT\\chromedriver.exe");
+			driver = new ChromeDriver();
+		}else if (browser.equals(firefox)){
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\formation\\Desktop\\SUT\\geckodriver.exe");
+			driver = new FirefoxDriver();
+		}
+		
 		driver.manage().window().maximize();
 		driver.get("https://fr.wowhead.com/");
 	}
@@ -31,10 +43,6 @@ public class WowheadTest {
 	
 	@Test
 	public void wowheadRechercheTest() throws InterruptedException {
-//		System.setProperty("webdriver.chrome.driver", "C:\\Users\\formation\\Desktop\\SUT\\chromedriver.exe");
-//		driver = new ChromeDriver();
-//		driver.manage().window().maximize();
-//		driver.get("https://fr.wowhead.com/");
 		
 		waiting(driver);
 		
@@ -52,6 +60,7 @@ public class WowheadTest {
 		waiting(driver);
 		
 		// fermer cookies "J'ai pigé"
+		Thread.sleep(5000);
 		resultatPage.cliqueCookiesDeux();
 		
 		// cliquer sur PNJ
