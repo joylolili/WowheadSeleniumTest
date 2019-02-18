@@ -42,6 +42,7 @@ public class WowheadTest {
 			driver = new FirefoxDriver();
 		}
 		
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.MINUTES);
 		driver.manage().window().maximize();
 		driver.get("https://fr.wowhead.com/");
 	}
