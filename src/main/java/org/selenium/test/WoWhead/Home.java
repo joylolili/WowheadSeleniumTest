@@ -32,6 +32,7 @@ public class Home extends WowheadPage {
 	
 	public void cliqueCookies() {
 
+		
 		Wait wait = new FluentWait(driver)
 				.withTimeout(30, TimeUnit.SECONDS)
 				.pollingEvery(5, TimeUnit.SECONDS)
