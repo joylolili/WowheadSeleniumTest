@@ -27,7 +27,7 @@ public class WowheadTest {
 			System.setProperty("webdriver.chrome.driver", "C:\\Users\\formation\\Desktop\\SUT\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}else if (browser.equals(opera)){
-			System.setProperty("webdriver.gecko.driver", "C:\\Users\\formation\\Desktop\\SUT\\operadriver_win64\\operadriver.exe");
+			System.setProperty("webdriver.opera.driver", "C:\\Users\\formation\\Desktop\\SUT\\operadriver_win64\\operadriver.exe");
 			driver = new OperaDriver();
 		}
 		
